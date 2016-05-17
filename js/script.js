@@ -13,7 +13,7 @@ var localstorage = {
 
 $(function() {
 
-  $('.your-class').slick({
+  $('.form-slider').slick({
     // setting-name: setting-value
     // breaks when above line is on
   });
