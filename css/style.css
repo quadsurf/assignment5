@@ -1,0 +1,12 @@
+font-family: 'Kaushan Script', sans-serif; /*Logo Text*/
+font-family: 'Poiret One', sans-serif; /*H1-6 Text*/
+font-family: 'Roboto', sans-serif; /*Content Text*/
+font-family: 'Abel', sans-serif; /*Button Text*/
+
+
+.darkgray { color: #444444; }
+.medgray { color: #A3A3A3; }
+.litegray { color: #F6F6F6; }
+.liteteal { color: #EDF2F4; }
+.medteal { color: #C9D9DE; }
+.darkteal { color: #96B2BD; }
