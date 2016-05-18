@@ -53,18 +53,16 @@
         <button type="button" id="addcat" class="btn btn-default">Add Menu Item Category</button>
         <form id="menu" action="#" class="form-horizontal">
 
-        <div id="categoryID">
+        <div id="menugen">
           <label class="sr-only" for="catname">Category Name</label>
           <input type="text" class="inputText" id="catname" name="catname" placeholder="category name">
           <label class="sr-only" for="baseimage">Upload Base Image</label>
-          <input type="file" class="inputText uploader" id="baseimage" name="baseimage" placeholder="Upload Base Image" accept="image/*">
-          <div id="toppingID">
-              <label class="sr-only" for="toppingname">Topping Name</label>
-              <input type="text" class="inputText" id="toppingname" name="toppingname" placeholder="topping name">
-              <label class="sr-only" for="toppingimage">Upload Topping Image</label>
-              <input type="file" class="inputText uploader" id="toppingimage" name="toppingimage" placeholder="Get Topping Image" accept="image/*">
-          </div>
-          <button type="button" id="addtopp" class="btn btn-default">Add Another Topping</button>
+          <input type="file" class="inputText" id="baseimage" name="baseimage" placeholder="Upload Base Image" accept="image/*">
+          <label class="sr-only" for="toppingname">Topping Name</label>
+          <input type="text" class="inputText" id="toppingname" name="toppingname" placeholder="topping name">
+          <label class="sr-only" for="toppingimage">Upload Topping Image</label>
+          <input type="file" class="inputText" id="toppingimage" name="toppingimage" placeholder="Get Topping Image" accept="image/*">
+          <button type="button" class="btn btn-default">Add Another Topping</button>
         </div>
         <button type="submit" class="btn btn-default">Save</button>
         <input type="button" class="btn btn-default" value="Preview">
@@ -72,11 +70,10 @@
         </form>
       </div><!-- end 2nd slide of form -->
 
-      <!-- start 3rd slide of form -->
       <div>
         google maps api plotter form
       </div><!-- end 3rd slide of form -->
-    </div><!-- end form slider container -->
+    </div><!-- end slider container -->
 
     <!-- <img src="assets/samplePizza.jpg" class="img-responsive"> -->
 

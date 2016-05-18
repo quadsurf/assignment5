@@ -1,3 +1,31 @@
+// start image setter
+// bannerImage = document.getElementById('bannerImg');
+// imgData = getBase64Image(bannerImage);
+// localStorage.setItem("imgData", imgData);
+// end image setter
+
+// start base64 image stringifier
+// function getBase64Image(img) {
+//     var canvas = document.createElement("canvas");
+//     canvas.width = img.width;
+//     canvas.height = img.height;
+//
+//     var ctx = canvas.getContext("2d");
+//     ctx.drawImage(img, 0, 0);
+//
+//     var dataURL = canvas.toDataURL("image/png");
+//
+//     return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+// }
+// end base64 image stringifier
+
+// start image getter
+// var dataImage = localStorage.getItem('imgData');
+// bannerImg = document.getElementById('tableBanner');
+// bannerImg.src = "data:image/png;base64," + dataImage;
+// end image getter
+
+
 var localstorage = {
     set: function(key, value) {
         window.localStorage.setItem(key, JSON.stringify(value));
@@ -13,9 +41,24 @@ var localstorage = {
 
 $(function() {
 
+  // var passw = $('#pass');
+  // var cbutton = $('#cbutton');
+  // var emaila = $('#email');
+  // if (!passw.is(":focus")) {
+  //   cbutton.hide();
+  //   console.log("pass has no focus");
+  // }
+  // if (emaila.blur()) {
+  //   cbutton.show();
+  //   console.log("pass has focus");
+  // }
+
+  $('#categoryID').hide();
+  $('#toppingID').hide();
+
   $('.form-slider').slick({
     // setting-name: setting-value
-    // breaks when above line is on
+    // breaks when above line is enabled???
   });
 
   // Init

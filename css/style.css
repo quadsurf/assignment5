@@ -10,3 +10,47 @@ font-family: 'Abel', sans-serif; /*Button Text*/
 .liteteal { color: #EDF2F4; }
 .medteal { color: #C9D9DE; }
 .darkteal { color: #96B2BD; }
+
+form {
+  outline: 0;
+}
+
+#form1 {
+  display: flex;
+  justify-content: center;
+  height: auto;
+}
+
+.inputText {
+  background-color: transparent !important;
+  border: none !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-bottom: 1px solid #A3A3A3 !important;
+  margin-top: 60px;
+  font-size: 60px;
+  font-family: 'Abel', sans-serif;
+  text-align: center;
+}
+
+input:focus, button:focus {outline: none;}
+
+#submitcreate {
+  position: absolute;
+  bottom: 90px;
+  right: 150px;
+}
+
+.removebuttonstyling {
+  background-color: transparent !important;
+  border: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+.uploader {
+  padding-top: 30px;
+}
