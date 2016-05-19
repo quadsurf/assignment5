@@ -1,5 +1,7 @@
 font-family: 'Kaushan Script', sans-serif; /*Logo Text*/
-font-family: 'Poiret One', sans-serif; /*H1-6 Text*/
+h1 { font-family: 'Poiret One', sans-serif;
+font-weight: 100;
+} /*H1-6 Text*/
 font-family: 'Roboto', sans-serif; /*Content Text*/
 font-family: 'Abel', sans-serif; /*Button Text*/
 
@@ -58,6 +60,7 @@ input:focus, button:focus {outline: none;}
 #slider {
   position: relative;
   overflow: hidden;
+  height: 100%;
   margin: 20px auto 0 auto;
   border-radius: 4px;
 }
@@ -134,4 +137,52 @@ a.control_next {
   margin: 10px auto;
   width: 160px;
   font-size: 18px;
+}
+
+#map {
+  height: 100%;
+}
+.controls {
+  margin-top: 10px;
+  border: 1px solid transparent;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 32px;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 300px;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+.pac-container {
+  font-family: Roboto;
+}
+
+#type-selector {
+  color: #fff;
+  background-color: #4d90fe;
+  padding: 5px 11px 0px 11px;
+}
+
+#type-selector label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+#target {
+  width: 345px;
 }

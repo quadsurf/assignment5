@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Skip</title>
+
+  <script src="js/jquery223.js" type="text/javascript" charset="utf-8"></script>
+  <script src="bootstrap336/js/bootstrap.js"></script>
+  <script src="jqueryui1114/external/jquery/jquery.js"></script>
+  <script src="jqueryui1114/jquery-ui.js"></script>
+  <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfJBcanKgDnxxEF7dbe71RUsn0CRA6Mlw&libraries=places"></script> -->
+
+  <script src="js/script.js" type="text/javascript" charset="utf-8" defer></script>
+
+  <link href="bootstrap336/css/bootstrap.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="jqueryui1114/jquery-ui.css">
+
+  <link href="http://fonts.googleapis.com/css?family=Kaushan+Script|Poiret+One|Roboto|Abel" rel="stylesheet" type="text/css">
+
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
+</head>
+<body>
+  <span id="welcome" style="display:none;"></span>
+  <div class="container">
+    <div class="container-fluid">
+
+    <div class="row center-block">
+      <div id="form2" class="col-md-12">
+          <div class="input-group" style="padding-bottom: 30px;">
+            <span class="input-group-addon">
+              <span class="glyphicon glyphicon-plus"></span>
+            </span>
+            <button type="button" id="addcat" class="btn btn-default form-control">Add Menu Item Category</button>
+        </div>
+      </div>
+    </div>
+
+
+  <div class="row" style="display: flex; justify-content: space-between;">
+
+      <div class="panel panel-default col-md-5">
+        <div class="panel-heading">
+          <h3 class="panel-title">Menu Category</h3>
+        </div>
+        <div class="panel-body">
+          <form id="menu" action="#">
+
+          <div id="categoryID">
+            <label class="sr-only" for="catname">Category Name</label>
+            <input type="text" class="inputSmall" id="catname" name="catname" placeholder="category name">
+            <label class="sr-only" for="baseimage">Upload Base Image</label>
+            <input type="file" class="inputSmall uploader" id="baseimage" name="baseimage" placeholder="Upload Base Image" accept="image/*">
+
+            <div id="toppingId-1" class="topping">
+                <hr>
+                <label class="sr-only" for="toppingName-1">Topping Name</label>
+                <input type="text" class="inputSmall" id="toppingName-1" name="toppingName-1" placeholder="topping name 1">
+                <label class="sr-only" for="toppingImage-1">Upload Topping Image</label>
+                <input type="file" class="inputSmall uploader" id="toppingImage-1" name="toppingImage-1" accept="image/*">
+            </div>
+            <hr id="toppref">
+            <div class="col-md-12">
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </span>
+                <button type="button" id="addtopp" class="btn btn-default form-control">Add Another Topping</button>
+              </div>
+            </div>
+            <hr>
+          </div><!-- end category id div -->
+          <hr>
+
+          <div class="col-md-6">
+            <button type="submit" class="btn btn-default form-control">Save</button>
+          </div>
+
+          <div class="col-md-6">
+            <button id="opener" class="btn btn-default form-control" disabled>Preview</button>
+            <div id="dialog" title="Your Customer's Meal Creator">
+              Preview Content
+            </div>
+          </div>
+
+
+          </form>
+
+
+        </div><!-- end panel body -->
+      </div><!-- end parent panel -->
+
+
+
+
+
+
+
+
+
+      <div id="savedcatPanel-1" class="panel panel-default col-md-5">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            Food Category: <span id="catnameDisplay"></span>
+          </h3>
+        </div>
+        <div id="catimageDisplay" class="panel-body">
+          <p>
+
+          </p>
+        </div>
+        <ul class="list-group">
+          <li class="list-group-item">Thumbnail + Saved Topping Name 1</li>
+          <li class="list-group-item">Thumbnail + Saved Topping Name 2</li>
+          <li class="list-group-item">Thumbnail + Saved Topping Name 3</li>
+          <li class="list-group-item">Thumbnail + Saved Topping Name 4</li>
+          <li class="list-group-item">Thumbnail + Saved Topping Name 5</li>
+        </ul>
+      </div>
+
+
+
+
+
+
+
+
+
+
+  </div><!-- end row -->
+
+<button type="button" id="menunext"><img src="assets/submitarrow.png" style="border:0;"></button>
+
+    </div>
+  </div>
+
+</body>
+</html>
