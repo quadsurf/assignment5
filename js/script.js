@@ -13,13 +13,6 @@ function getBase64Image(img) {
 }
 // end base64 image stringifier
 
-// start image getter
-// var dataImage = localStorage.getItem('imgData');
-// bannerImg = document.getElementById('test');
-// bannerImg.src = "data:image/png;base64," + dataImage;
-// end image getter
-
-
 var data = {
     set: function(key, value) {
         window.localStorage.setItem(key, JSON.stringify(value));
@@ -50,26 +43,8 @@ function updateUser(user) {
 }
 
 $(function() {
-
-    // var passw = $('#pass');
-    // var cbutton = $('#cbutton');
-    // var emaila = $('#email');
-    // if (!passw.is(":focus")) {
-    //   cbutton.hide();
-    //   console.log("pass has no focus");
-    // }
-    // if (emaila.blur()) {
-    //   cbutton.show();
-    //   console.log("pass has focus");
-    // }
-
     $('#categoryID').hide();
     $('#toppingID').hide();
-
-    $('.form-slider').slick({
-        // setting-name: setting-value
-        // breaks when above line is enabled???
-    });
 
     // Learn more about Init
     this.init = function() {
@@ -77,7 +52,7 @@ $(function() {
 
         if (user) { // If logged in
             console.log('Logged in User: ' + user);
-            $('#form1').hide();
+            //$('#form1').hide();
             $('#welcome a').empty().text('Welcome ' + user.firstname);
         } else { // if not logged in
             console.log('Not logged on!');
@@ -86,14 +61,25 @@ $(function() {
 
     this.init();
 
+    function moveRight() {
+        $('#slider ul').animate({
+            left: - slideWidth
+        }, 400, function () {
+            $('#slider ul li:first-child').appendTo('#slider ul');
+            $('#slider ul').css('left', '');
+        });
+    };
+
+    $("#dialog").dialog({ autoOpen: false });
+    $("#opener").click(function() {
+      $("#dialog").dialog("open").dialog({width: 910},{height: 570});
+      $('#dialog').append(data.get('user'));
+    });
+
     $('#create').submit(function() {
         var firstname = $('#firstname').val();
         var email = $('#email').val();
         var password = $('#pass').val();
-
-        // data.set('firstName', firstname);
-        // data.set('email', email);
-        // data.set('password', password);
 
         var id = data.get('lastId') + 1;
 
@@ -110,14 +96,20 @@ $(function() {
 
         // Finding user first name
         $('#welcome a').empty().text('Welcome ' + user.firstname);
-        $(".slick-next").click();
-        $('#form1').hide();
+        $('#submitcreate').click(function () {
+            moveRight();
+        });
+        //$('#form1').hide();
         return false;
     });
 
     $('#addcat').click(function() {
         $('#categoryID').show();
         $('#toppingID').show();
+    });
+
+    $('#menunext').click(function() {
+      moveRight();
     });
 
     $('#menu').submit(function() {
@@ -149,10 +141,8 @@ $(function() {
 
         updateUser(user);
         console.log('updated');
-        // data.set('user', user);
-        // var userId = user.id;
 
-        $('.removebuttonstyling').show();
+        // $('.removebuttonstyling').show();
 
         return false;
     });
@@ -177,5 +167,36 @@ $(function() {
     $('.uploader').change(function() {
         readFromFileBrowser($(this));
     });
+
+
+  //start slider
+  	var slideCount = $('#slider ul li').length;
+  	var slideWidth = $('#slider ul li').width();
+  	var slideHeight = $('#slider ul li').height();
+  	var sliderUlWidth = slideCount * slideWidth;
+
+  	$('#slider').css({ width: slideWidth, height: slideHeight });
+
+  	$('#slider ul').css({ width: sliderUlWidth, marginLeft: - slideWidth });
+
+    $('#slider ul li:last-child').prependTo('#slider ul');
+
+    function moveLeft() {
+        $('#slider ul').animate({
+            left: + slideWidth
+        }, 400, function () {
+            $('#slider ul li:last-child').prependTo('#slider ul');
+            $('#slider ul').css('left', '');
+        });
+    };
+
+    $('a.control_prev').click(function () {
+        moveLeft();
+    });
+
+    $('a.control_next').click(function () {
+        moveRight();
+    });
+  //end slider
 
 }); //end jQuery

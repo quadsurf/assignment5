@@ -4,12 +4,17 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>Skip Dee Line Mon</title>
 
-  <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript" charset="utf-8"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous" defer></script>
-  <script src="slick/slick.js" type="text/javascript" defer></script>
-  <script src="js/script.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="js/jquery223.js" type="text/javascript" charset="utf-8"></script>
+  <script src="bootstrap336/js/bootstrap.js"></script>
+  <script src="jqueryui1114/external/jquery/jquery.js"></script>
+  <script src="jqueryui1114/jquery-ui.js"></script>
 
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script src="slick/slick.js" type="text/javascript" defer></script>
+  <script src="js/scriptTEST.js" type="text/javascript" charset="utf-8" defer></script>
+
+  <link href="bootstrap336/css/bootstrap.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="jqueryui1114/jquery-ui.css">
 
   <link href="http://fonts.googleapis.com/css?family=Kaushan+Script|Poiret+One|Roboto|Abel" rel="stylesheet" type="text/css">
 
@@ -27,55 +32,66 @@
 
     <span id="welcome"><a href="#">Login</a></span>
     <!-- start form slider container -->
-    <div class="form-slider" style="background-color:#EDF2F4;">
-      <div id="form1" style="position: relative;">
-        <form id="create" action="#" class="form-horizontal">
-        <div class="">
-          <label class="sr-only" for="firstname">First Name</label>
-          <input type="text" class="inputText" id="firstname" name="firstname" placeholder="first name" autofocus="autofocus" required>
-        </div>
-        <div class="">
-          <label class="sr-only" for="email">Email</label>
-          <input type="email" class="inputText" id="email" name="email" placeholder="email" required>
-        </div>
-        <div class="">
-          <label class="sr-only" for="pass">Password</label>
-          <input type="password" class="inputText" style="margin-bottom:100px;" id="pass" name="pass" placeholder="password" required>
-        </div>
 
-        <input id="submitcreate" type="image" src="assets/submitarrow.png">
 
-        </form>
-      </div><!-- end 1st slide of form -->
+    <div id="slider">
+      <a href="#" class="control_prev">left</a>
+      <ul>
+        <li>
+          <div id="form1" style="position: relative;">
+            <form id="create" action="#" class="form-horizontal">
+            <div class="">
+              <label class="sr-only" for="firstname">First Name</label>
+              <input type="text" class="inputText" id="firstname" name="firstname" placeholder="first name" autofocus="autofocus" required>
+            </div>
+            <div class="">
+              <label class="sr-only" for="email">Email</label>
+              <input type="email" class="inputText" id="email" name="email" placeholder="email" required>
+            </div>
+            <div class="">
+              <label class="sr-only" for="pass">Password</label>
+              <input type="password" class="inputText" style="margin-bottom:100px;" id="pass" name="pass" placeholder="password" required>
+            </div>
 
-      <div id="form2" style="position: relative; height: 500px; overflow: scroll">
-        <button type="button" id="addcat" class="btn btn-default">Add Menu Item Category</button>
-        <form id="menu" action="#" class="form-horizontal">
+            <input id="submitcreate" class="control_next" type="image" src="assets/submitarrow.png">
 
-        <div id="categoryID">
-          <label class="sr-only" for="catname">Category Name</label>
-          <input type="text" class="inputText" id="catname" name="catname" placeholder="category name">
-          <label class="sr-only" for="baseimage">Upload Base Image</label>
-          <input type="file" class="inputText uploader" id="baseimage" name="baseimage" placeholder="Upload Base Image" accept="image/*">
-          <div id="toppingID1" class="topping">
-              <label class="sr-only" for="toppingname1">Topping Name</label>
-              <input type="text" class="inputText" id="toppingname1" name="toppingname1" placeholder="topping name 1">
-              <label class="sr-only" for="toppingimage1">Upload Topping Image</label>
-              <input type="file" class="inputText uploader" id="toppingimage1" name="toppingimage1" placeholder="Get Topping Image" accept="image/*">
-          </div>
-          <button type="button" id="addtopp" class="btn btn-default">Add Another Topping</button>
-        </div>
-        <button type="submit" class="btn btn-default">Save</button>
-        <input type="button" class="btn btn-default" value="Preview">
-        <button type="button" class="removebuttonstyling" style="display: none"><img src="assets/submitarrow.png" style="border:0;"></button>
-        </form>
-      </div><!-- end 2nd slide of form -->
+            </form>
+          </div><!-- end 1st slide of form -->
+        </li>
+        <li>
+          <div id="form2" style="position: relative; height: 500px; overflow: scroll">
+            <button type="button" id="addcat" class="btn btn-default">Add Menu Item Category</button>
+            <form id="menu" action="#" class="form-horizontal">
 
-      <!-- start 3rd slide of form -->
-      <div>
-        google maps api plotter form
-      </div><!-- end 3rd slide of form -->
-    </div><!-- end form slider container -->
+            <div id="categoryID">
+              <label class="sr-only" for="catname">Category Name</label>
+              <input type="text" class="inputText" id="catname" name="catname" placeholder="category name">
+              <label class="sr-only" for="baseimage">Upload Base Image</label>
+              <input type="file" class="inputText uploader" id="baseimage" name="baseimage" placeholder="Upload Base Image" accept="image/*">
+              <div id="toppingID1" class="topping">
+                  <label class="sr-only" for="toppingname1">Topping Name</label>
+                  <input type="text" class="inputText" id="toppingname1" name="toppingname1" placeholder="topping name 1">
+                  <label class="sr-only" for="toppingimage1">Upload Topping Image</label>
+                  <input type="file" class="inputText uploader" id="toppingimage1" name="toppingimage1" placeholder="Get Topping Image" accept="image/*">
+              </div>
+              <button type="button" id="addtopp" class="btn btn-default">Add Another Topping</button>
+            </div>
+            <button type="submit" class="btn btn-default">Save</button>
+            <button id="opener" class="btn btn-default">Preview</button>
+            <div id="dialog" title="Dialog Title">
+              blah
+            </div>
+
+            <button type="button" id="menunext"><img src="assets/submitarrow.png" style="border:0;"></button>
+            </form>
+          </div><!-- end 2nd slide of form -->
+        </li>
+        <li>
+          google maps api plotter form
+        </li>
+        <li>SLIDE 4</li>
+      </ul>
+    </div>
 
     <!-- <img src="assets/samplePizza.jpg" class="img-responsive"> -->
 
