@@ -84,7 +84,7 @@ $(function() {
 
             $('#catimageDisplay').show();
 
-            if (userGlobal && userGlobal.categories && userGlobal.categories[0].hasOwnProperty(name)) {
+            // if (userGlobal && userGlobal.categories && userGlobal.categories[0].hasOwnProperty(name)) {
 
             var cats = userGlobal.categories[0];
             $('#catnameDisplay').text(cats.name);
@@ -94,7 +94,7 @@ $(function() {
             $.each(cats.toppings, function(i, top) {
                 $('#catimageDisplay p').after('<div class="col-xs-5" style="margin:10px;""><img src="'+top.image+'" width="60px" class="img-circle" /> '+top.name+'</div>');
             });
-            }
+            //}
 
 
 
@@ -178,10 +178,11 @@ $(function() {
 
         var cats = data.get('user').categories[0];
         $('#catnameDisplay').text(cats.name);
-        // var catimage = getBase64Image(cats.image);
-        catimage = cats.image;
-        console.log(catimage);
-        $('#catimageDisplay p').append("<img src='"+catimage+"' height='100px' class='img-thumbnail' style='margin-right:15px;'>" + "<b>Base " + cats.name + " Image</b>");
+
+        maincatimage = cats.image;
+        maincatname = cats.name;
+
+        $('#catimageDisplay p').append("<img src='" + maincatimage + "' height='100px' class='img-thumbnail' style='margin-right:15px;'>" + "<b>Base " + maincatname + " Image</b>");
 
         $.each(cats.toppings, function(i, top) {
             $('#catimageDisplay p').after('<div class="col-xs-5" style="margin:10px;""><img src="'+top.image+'" width="60px" class="img-circle" /> '+top.name+'</div>');
@@ -196,13 +197,8 @@ $(function() {
     $("#dialog").dialog({ autoOpen: false });
     $("#opener").click(function() {
       $("#dialog").dialog("open").dialog({width: 910},{height: 700});
-      // console.log($('#dialog'));
-      //console.log(userGlobal);
-
-      console.log(catimage);
-      $('#dialog').append("<img src='"+catimage+"' style='width:500px;'");
-      $('#dialog').append(userGlobal.categories[0].name);
-
+      //$('#dialog').append(userGlobal.categories[0].name);
+      $('#dialog').append("<img src='" + userGlobal.categories[0].image + "' class='img-responsive' style='z-index: 10000;'>");
     });
 
 
