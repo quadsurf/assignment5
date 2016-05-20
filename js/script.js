@@ -161,12 +161,16 @@ $(function() {
         $('#opener').prop("disabled", false);
         $('#addcat').prop("disabled", false);
 
-        // $('#savedcatPanel-1').show();
+        $('#savedcatPanel-1').show();
 
         var cats = data.get('user').categories[0];
         $('#catnameDisplay').text(cats.name);
-        var catimage = getBase64Image(cats.image);
-        $('#catimageDisplay p').append(`<img src='${catsimage}' height='30px'>`);
+        // var catimage = getBase64Image(cats.image);
+        $('#catimageDisplay p').append("<img src='"+cats.image+"' height='30px'>");
+
+        $.each(cats.toppings, function(i, top) {
+            $('#catimageDisplay p').after('<img src="'+top.image+'" /> '+top.name);
+        });
 
 
         return false;
@@ -179,26 +183,37 @@ $(function() {
         var topping = lastTopping.clone();
         var newId = "toppingId-" + (parseInt( $(".topping").last().attr('id').split('-')[1] ) + 1);
 
-        console.log( newId );
+        var $copy = topping;
+        var nextId = $('.topping').length+1;
+
+        console.log( nextId );
         // update other props
         topping.attr('id', newId);
 
         var newToppingName = "toppingName-"+newId;
         console.log(newToppingName);
-        $("label[for='toppingName-1']").attr('for', newToppingName);
-        $("input[name='toppingName-1']").attr('name', newToppingName);
-        $("input[id='toppingName-1']").attr('id', newToppingName);
+        // $("label[for='toppingName-1']").attr('for', newToppingName);
+        // $("input[name='toppingName-1']").attr('name', newToppingName);
+        // $("input[id='toppingName-1']").attr('id', newToppingName);
 
-        var newToppingImage = "toppingImage-"+newId;
-        console.log(newToppingImage);
-        $("label[for='toppingImage-1']").attr('for', newToppingImage);
-        $("input[name='toppingImage-1']").attr('name', newToppingImage);
-        $("input[id='toppingImage-1']").attr('id', newToppingImage);
+        // var newToppingImage = "toppingImage-"+newId;
+        // console.log(newToppingImage);
+        // $("label[for='toppingImage-1']").attr('for', newToppingImage);
+        // $("input[name='toppingImage-1']").attr('name', newToppingImage);
+        // $("input[id='toppingImage-1']").attr('id', newToppingImage);
+        console.log($('input[type="text"].inputSmall', $copy))
+        $('input[type="text"].inputSmall', $copy).val('');
+        $('input[type="text"].inputSmall', $copy).attr('id', 'toppingname'+nextId);
+        $('input[type="text"].inputSmall', $copy).attr('name', 'toppingname'+nextId);
+        $('input[type="text"].inputSmall', $copy).attr('placeholder', 'topping name '+nextId);
 
-        lastTopping.after(topping);
+        $('.uploader', $copy).attr('id', 'toppingimage'+nextId);
+        $('.uploader', $copy).attr('name', 'toppingimage'+nextId);
+
+        lastTopping.after($copy);
     });
 
-    $('.uploader').change(function() {
+    $('body').on('change', '.uploader', function() {
         readFromFileBrowser($(this));
     });
 
