@@ -1,5 +1,9 @@
 //AIzaSyAfJBcanKgDnx
 //start base64 encoder
+
+var userGlobal = null;
+var catimage = null;
+
 function previewFile() {
   var preview = document.querySelector('img');
   var file    = document.querySelector('input[type=file]').files[0];
@@ -58,7 +62,15 @@ function updateUser(user) {
     data.set(user.id, user);
 }
 
+//login logout manage user session state
 $(function() {
+
+  $('#welcome').on('click', 'a', function() {
+    localStorage.clear();
+    $(this).empty();
+    window.location.href = "signup.html";
+  });
+
     $('.panel-body').hide();
 
     // Learn more about Init
@@ -66,22 +78,32 @@ $(function() {
         var user = data.get('user');
 
         if (user) {
-            $('#welcome').show().text('Welcome ' + user.firstname + ' mon! - ').append("<a href='#'>Logout</a>").on('click', 'a', function() {
-              localStorage.clear();
-              $(this).empty();
-              console.log('logged out, but check localStorage');
+            $('#welcome').show().text('Welcome ' + user.firstname + '! - ').append("<a href='#'>Logout</a>");
+
+            userGlobal = user;
+
+            $('#catimageDisplay').show();
+
+            if (userGlobal && userGlobal.categories && userGlobal.categories[0].hasOwnProperty(name)) {
+
+            var cats = userGlobal.categories[0];
+            $('#catnameDisplay').text(cats.name);
+            // var catimage = getBase64Image(cats.image);
+            $('#catimageDisplay p').append("<img src='"+cats.image+"' height='100px' class='img-thumbnail' style='margin-right:15px;'>" + "<b>Base " + cats.name + " Image</b>");
+
+            $.each(cats.toppings, function(i, top) {
+                $('#catimageDisplay p').after('<div class="col-xs-5" style="margin:10px;""><img src="'+top.image+'" width="60px" class="img-circle" /> '+top.name+'</div>');
             });
+            }
+
+
+
         }
     }
 
     this.init();
 
-    $("#dialog").dialog({ autoOpen: false });
-    $("#opener").click(function() {
-      $("#dialog").dialog("open").dialog({width: 910},{height: 570});
-      $('#dialog').append(data.get('user'));
-    });
-
+    //signup signup.html create user object
     $('#create').submit(function() {
         var firstname = $('#firstname').val();
         var email = $('#email').val();
@@ -100,17 +122,7 @@ $(function() {
         data.set('lastId', id);
         data.set('user', user);
 
-        // Finding user first name
-        $('#welcome').text('Welcome ' + user.firstname + ' lad! - ').append("<a href='#'>Logout</a>").on('click', 'a', function() {
-          localStorage.clear();
-          $(this).empty();
-          console.log('logged out, but check localStorage');
-        });
-
-        // $('#submitcreate').click(function () {
-          console.log('test');
-            window.location.href = "menu.html";
-        // });
+        window.location.href = "menu.html";
 
         return false;
     });
@@ -128,6 +140,7 @@ $(function() {
       window.location.href = "thankyou.html";
     });
 
+    //save menu
     $('#menu').submit(function() {
         var catName = $('#catname').val();
         var baseImageData = files.baseimage;
@@ -166,14 +179,30 @@ $(function() {
         var cats = data.get('user').categories[0];
         $('#catnameDisplay').text(cats.name);
         // var catimage = getBase64Image(cats.image);
-        $('#catimageDisplay p').append("<img src='"+cats.image+"' height='30px'>");
+        catimage = cats.image;
+        console.log(catimage);
+        $('#catimageDisplay p').append("<img src='"+catimage+"' height='100px' class='img-thumbnail' style='margin-right:15px;'>" + "<b>Base " + cats.name + " Image</b>");
 
         $.each(cats.toppings, function(i, top) {
-            $('#catimageDisplay p').after('<img src="'+top.image+'" /> '+top.name);
+            $('#catimageDisplay p').after('<div class="col-xs-5" style="margin:10px;""><img src="'+top.image+'" width="60px" class="img-circle" /> '+top.name+'</div>');
         });
 
+        userGlobal = user;
 
         return false;
+    });
+
+    //modal
+    $("#dialog").dialog({ autoOpen: false });
+    $("#opener").click(function() {
+      $("#dialog").dialog("open").dialog({width: 910},{height: 700});
+      // console.log($('#dialog'));
+      //console.log(userGlobal);
+
+      console.log(catimage);
+      $('#dialog').append("<img src='"+catimage+"' style='width:500px;'");
+      $('#dialog').append(userGlobal.categories[0].name);
+
     });
 
 
