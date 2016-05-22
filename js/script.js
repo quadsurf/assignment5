@@ -18,6 +18,8 @@ function previewFile() {
   }
 }
 //end base64 encoder
+
+
 // start base64 image stringifier
 function getBase64Image(img) {
     var canvas = document.createElement("canvas");
@@ -33,6 +35,8 @@ function getBase64Image(img) {
 }
 // end base64 image stringifier
 
+
+//localStorage getter and setter function
 var data = {
     set: function(key, value) {
         window.localStorage.setItem(key, JSON.stringify(value));
@@ -46,6 +50,7 @@ var data = {
     }
 }
 
+
 var files = {};
 function readFromFileBrowser($el) {
     var reader = new FileReader();
@@ -57,11 +62,14 @@ function readFromFileBrowser($el) {
     };
 }
 
+
+//synchronise user instances
 function updateUser(user) {
     data.set('user', user);
     data.set(user.id, user);
 }
 
+//begin jQuery
 //login logout manage user session state
 $(function() {
 
@@ -73,7 +81,7 @@ $(function() {
 
     $('.panel-body').hide();
 
-    // Learn more about Init
+    // Note to Chris: Learn more about Self Init Function Usage
     this.init = function() {
         var user = data.get('user');
 
@@ -84,16 +92,17 @@ $(function() {
 
             $('#catimageDisplay').show();
 
+            //Ask Instructor why this breaks my code when enabled
             // if (userGlobal && userGlobal.categories && userGlobal.categories[0].hasOwnProperty(name)) {
+            if(userGlobal.categories) {
+                var cats = userGlobal.categories[0];
+                $('#catnameDisplay').text(cats.name);
+                $('#catimageDisplay p').append("<img src='" + cats.image + "' height='100px' class='img-thumbnail' style='margin-right:15px;'>" + "<b>Base " + cats.name + " Image</b>");
 
-            var cats = userGlobal.categories[0];
-            $('#catnameDisplay').text(cats.name);
-            // var catimage = getBase64Image(cats.image);
-            $('#catimageDisplay p').append("<img src='"+cats.image+"' height='100px' class='img-thumbnail' style='margin-right:15px;'>" + "<b>Base " + cats.name + " Image</b>");
-
-            $.each(cats.toppings, function(i, top) {
-                $('#catimageDisplay p').after('<div class="col-xs-5" style="margin:10px;""><img src="'+top.image+'" width="60px" class="img-circle" /> '+top.name+'</div>');
-            });
+                $.each(cats.toppings, function(i, top) {
+                    $('#catimageDisplay p').after('<div class="col-xs-5" style="margin:10px;""><img src="' + top.image + '" width="60px" class="img-circle" /> ' + top.name + '</div>');
+                });
+            }
             //}
 
 
@@ -101,7 +110,7 @@ $(function() {
         }
     }
 
-    this.init();
+    this.init();//Note to Chris: Learn more about this!!!
 
     //signup signup.html create user object
     $('#create').submit(function() {
@@ -154,7 +163,7 @@ $(function() {
         var toppings = [];
         for(i = 1; i <= toppingCount; i++) {
             var toppingName = $('#toppingname'+i).val();
-            var toppingImageData = files['toppingimage'+i];
+            var toppingImageData = files['toppingimage' + i];
 
             toppings.push({
                 name: toppingName,
@@ -185,7 +194,7 @@ $(function() {
         $('#catimageDisplay p').append("<img src='" + maincatimage + "' height='100px' class='img-thumbnail' style='margin-right:15px;'>" + "<b>Base " + maincatname + " Image</b>");
 
         $.each(cats.toppings, function(i, top) {
-            $('#catimageDisplay p').after('<div class="col-xs-5" style="margin:10px;""><img src="'+top.image+'" width="60px" class="img-circle" /> '+top.name+'</div>');
+            $('#catimageDisplay p').after('<div class="col-xs-5" style="margin:10px;""><img src="'+top.image+'" width="60px" class="img-circle" /> ' + top.name + '</div>');
         });
 
         userGlobal = user;
@@ -193,14 +202,26 @@ $(function() {
         return false;
     });
 
-    //modal
+    //modal popup layer for previewing customer view
     $("#dialog").dialog({ autoOpen: false });
     $("#opener").click(function() {
       $("#dialog").dialog("open").dialog({width: 910},{height: 700});
       //$('#dialog').append(userGlobal.categories[0].name);
-      $('#dialog').append("<img src='" + userGlobal.categories[0].image + "' class='img-responsive' style='z-index: 10000;'>");
+      $('#dialog').append("<img src='" + userGlobal.categories[0].image + "' style='position: absolute' class='img-responsive' style='z-index: 10000;'>");
+      var toppingToggleHtml = '';
+      $.each(userGlobal.categories[0].toppings, function(i, topping) {
+        toppingToggleHtml += '<label><input class="topping-toggle" data-id="' + i + '" type="checkbox" /> ' + topping.name + '</label> | ';
+        $('#dialog').append("<img src='" + topping.image + "' id='top_img_"+i+"' style='display: none; position: absolute' class='img-responsive' style='z-index: "+(10000*(i+2))+";'>");
+      });
+
+      $('#dialog img:first').before(toppingToggleHtml);
     });
 
+    $('#dialog').on('change', '.topping-toggle', function() {
+        var i = $(this).data('id');
+        $(this).prop('checked') ? $('#top_img_' + i).show() : $('#top_img_' + i).hide();
+        //Note to Chris: too much stackOverflow reliance here, so remember to review ? and : syntax and seek to better understand their use in this syntax
+    });
 
     $('#addtopp').click(function(){
 
@@ -211,12 +232,11 @@ $(function() {
         var $copy = topping;
         var nextId = $('.topping').length+1;
 
-        console.log( nextId );
-        // update other props
         topping.attr('id', newId);
 
         var newToppingName = "toppingName-"+newId;
-        console.log(newToppingName);
+
+        //zubair's help, learn below process better
         // $("label[for='toppingName-1']").attr('for', newToppingName);
         // $("input[name='toppingName-1']").attr('name', newToppingName);
         // $("input[id='toppingName-1']").attr('id', newToppingName);
@@ -226,7 +246,7 @@ $(function() {
         // $("label[for='toppingImage-1']").attr('for', newToppingImage);
         // $("input[name='toppingImage-1']").attr('name', newToppingImage);
         // $("input[id='toppingImage-1']").attr('id', newToppingImage);
-        console.log($('input[type="text"].inputSmall', $copy))
+        // console.log($('input[type="text"].inputSmall', $copy))
         $('input[type="text"].inputSmall', $copy).val('');
         $('input[type="text"].inputSmall', $copy).attr('id', 'toppingname'+nextId);
         $('input[type="text"].inputSmall', $copy).attr('name', 'toppingname'+nextId);
